@@ -4,16 +4,18 @@
   "description": "This is an implementation of the modified merkle patricia tree as specified in the Ethereum's yellow paper.",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test:node && npm run test:browser",
+    "test": "yarn test:node && yarn test:browser",
     "coverage": "istanbul cover tape ./test/*.js",
-    "coveralls": "npm run coverage && coveralls <coverage/lcov.info",
+    "coveralls": "yarn coverage && coveralls <coverage/lcov.info",
     "lint": "standard",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "yarn build",
     "test:browser": "karma start karma.conf.js",
     "test:node": "babel-tape-runner ./test/*.js",
-    "babel": "npx babel src --out-dir ./",
-    "build": "npm run babel && mkdir -p dist && browserify --s Trie index.js -o dist/trie.js -t [ babelify --presets [ @babel/preset-env ] ]",
-    "build:docs": "documentation build ./src/** -f md --shallow ./src/index.js ./src/secure.js ./src/proof.js > ./docs/index.md --github --config documentation.yml --markdown-toc false"
+    "babel": "babel src --out-dir build",
+    "build": "yarn babel && mkdir -p dist && browserify --s Trie build/index.js -o dist/trie.js -t [ babelify --presets [ @babel/preset-env ] ]",
+    "build:docs": "documentation build ./src/** -f md --shallow ./src/index.js ./src/secure.js ./src/proof.js > ./docs/index.md --github --config documentation.yml --markdown-toc false",
+    "clean": "rm -rf build dist",
+    "prebuild": "yarn clean"
   },
   "author": {
     "name": "mjbecze",
