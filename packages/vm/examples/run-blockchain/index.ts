@@ -75,7 +75,7 @@ async function setupPreConditions(vm: VM, testData: any) {
       await psm.putContractStorage(addressBuf, storageKey, val)
     }
 
-    const codeBuf = utils.toBuffer(acctData.code)
+    const codeBuf = utils.toBuffer(acctData.code || '0x')
 
     await psm.putContractCode(addressBuf, codeBuf)
   }

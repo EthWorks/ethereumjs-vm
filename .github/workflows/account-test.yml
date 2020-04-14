@@ -2,7 +2,7 @@ name: Account Test
 'on':
   push:
     branches:
-      - master
+      - vmperf-master
     tags:
       - '*'
     paths-ignore:

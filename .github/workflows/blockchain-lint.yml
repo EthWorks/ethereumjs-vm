@@ -2,7 +2,7 @@ name: Blockchain Lint
 'on':
   push:
     branches:
-      - master
+      - vmperf-master
     tags:
       - '*'
     paths-include:
