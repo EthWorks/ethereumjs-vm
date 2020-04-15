@@ -1273,10 +1273,9 @@ merge-source-map@^1.1.0:
   dependencies:
     source-map "^0.6.1"
 
-merkle-patricia-tree@^3.0.0:
+"merkle-patricia-tree@git+https://github.com/EthWorks/merkle-patricia-tree.git#vmperf-dist":
   version "3.0.0"
-  resolved "https://registry.yarnpkg.com/merkle-patricia-tree/-/merkle-patricia-tree-3.0.0.tgz#448d85415565df72febc33ca362b8b614f5a58f8"
-  integrity sha512-soRaMuNf/ILmw3KWbybaCjhx86EYeBbD8ph0edQCTed0JN/rxDt1EBN52Ajre3VyGo+91f8+/rfPIRQnnGMqmQ==
+  resolved "git+https://github.com/EthWorks/merkle-patricia-tree.git#c385d4666480e3807ad76ba2e1432fff8746f99f"
   dependencies:
     async "^2.6.1"
     ethereumjs-util "^5.2.0"
