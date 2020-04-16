@@ -5,6 +5,7 @@
     "lerna": "^3.20.2"
   },
   "scripts": {
-    "test:prepare": "./scripts/test-prepare.sh && lerna bootstrap --ignore-scripts"
+    "test:prepare": "./scripts/test-prepare.sh && lerna bootstrap --npm-client=yarn",
+    "ci:prepare": "./scripts/test-prepare.sh && lerna bootstrap --ignore-scripts --no-ci"
   }
 }

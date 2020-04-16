@@ -1,16 +1,9 @@
-name: VM Lint
-'on':
-  push:
-    paths-include:
-      - packages/vm/**
-  pull_request:
-    types: [opened, reopened, synchronize]
-    paths-include:
-      - packages/vm/**
+name: VM Test on Push
+on: push
 env:
   cwd: '${{github.workspace}}/packages/vm'
 jobs:
-  lint:
+  test-api:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v1
@@ -28,7 +21,7 @@ jobs:
         working-directory: '${{github.workspace}}'
       - run: 'npm run ci:prepare'
         working-directory: '${{github.workspace}}'
-      - run: npm run lint
+      - run: 'npm run test:API'
         env:
           CI: true
         working-directory: '${{ env.cwd }}'
