@@ -6,7 +6,7 @@ import Bloom from './bloom'
 import { RunTxResult } from './runTx'
 import PStateManager from './state/promisified'
 const promisify = require('util.promisify')
-const Trie = require('merkle-patricia-tree')
+const { CheckpointTrie: Trie } = require('merkle-patricia-tree')
 
 /**
  * Options for running a block.

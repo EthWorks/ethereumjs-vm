@@ -1,7 +1,7 @@
 import * as tape from 'tape'
 import * as rlp from 'rlp'
 import Account from '../src/index'
-const SecureTrie = require('merkle-patricia-tree/secure')
+const { SecureTrie } = require('merkle-patricia-tree')
 
 tape('empty constructor', function(tester) {
   const it = tester.test

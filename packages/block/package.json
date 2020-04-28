@@ -48,7 +48,7 @@
     "ethereumjs-common": "^1.5.0",
     "ethereumjs-tx": "^2.1.1",
     "ethereumjs-util": "^6.1.0",
-    "merkle-patricia-tree": "git+https://github.com/EthWorks/merkle-patricia-tree.git#vmperf-dist"
+    "merkle-patricia-tree": "git+https://github.com/EthWorks/merkle-patricia-tree.git#dist-async-map"
   },
   "devDependencies": {
     "@ethereumjs/config-nyc": "^1.1.1",

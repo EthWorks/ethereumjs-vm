@@ -13,7 +13,7 @@ import runBlockchain from './runBlockchain'
 import PStateManager from './state/promisified'
 const promisify = require('util.promisify')
 const AsyncEventEmitter = require('async-eventemitter')
-const Trie = require('merkle-patricia-tree/secure.js')
+const { SecureTrie: Trie } = require('merkle-patricia-tree')
 
 /**
  * Options for instantiating a [[VM]].

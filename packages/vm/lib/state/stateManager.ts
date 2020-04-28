@@ -1,5 +1,5 @@
 const Set = require('core-js-pure/es/set')
-const Trie = require('merkle-patricia-tree/secure.js')
+const { SecureTrie: Trie } = require('merkle-patricia-tree')
 const asyncLib = require('async')
 import * as utils from 'ethereumjs-util'
 import BN = require('bn.js')

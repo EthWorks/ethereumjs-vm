@@ -6,7 +6,7 @@ import { Transaction } from 'ethereumjs-tx'
 import { BlockHeader } from './header'
 import { Blockchain, BlockData, ChainOptions } from './types'
 
-const Trie = require('merkle-patricia-tree')
+const { CheckpointTrie: Trie } = require('merkle-patricia-tree')
 
 /**
  * An object that represents the block

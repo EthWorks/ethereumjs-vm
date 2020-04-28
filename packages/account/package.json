@@ -54,7 +54,7 @@
     "@types/node": "^11.9.4",
     "@types/tape": "^4.2.33",
     "husky": "^2.1.0",
-    "merkle-patricia-tree": "git+https://github.com/EthWorks/merkle-patricia-tree.git#vmperf-dist",
+    "merkle-patricia-tree": "git+https://github.com/EthWorks/merkle-patricia-tree.git#dist-async-map",
     "nyc": "^13.2.0",
     "prettier": "^1.15.3",
     "tape": "^4.10.1",

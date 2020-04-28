@@ -1,7 +1,7 @@
 const async = require('async')
 const testUtil = require('./util.js')
 const ethUtil = require('ethereumjs-util')
-const Trie = require('merkle-patricia-tree/secure')
+const { SecureTrie: Trie } = require('merkle-patricia-tree')
 const Block = require('ethereumjs-block')
 const Blockchain = require('ethereumjs-blockchain').default
 const BlockHeader = require('ethereumjs-block/header.js')
