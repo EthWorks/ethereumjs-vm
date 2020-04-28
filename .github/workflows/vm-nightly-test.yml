@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v1
         with:
-          node-version: 8.x
+          node-version: 12.x
       - uses: actions/checkout@v1
       - name: Cache node modules
         id: cache-node-modules
@@ -37,7 +37,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v1
         with:
-          node-version: 8.x
+          node-version: 12.x
       - uses: actions/checkout@v1
       - name: Cache node modules
         id: cache-node-modules
@@ -60,7 +60,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v1
         with:
-          node-version: 8.x
+          node-version: 12.x
       - uses: actions/checkout@v1
       - name: Cache node modules
         id: cache-node-modules
@@ -83,7 +83,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v1
         with:
-          node-version: 8.x
+          node-version: 12.x
       - uses: actions/checkout@v1
       - name: Cache node modules
         id: cache-node-modules

@@ -1,7 +1,6 @@
 import BN = require('bn.js')
 import Common from 'ethereumjs-common'
-import { StateManager } from '../state'
-import PStateManager from '../state/promisified'
+import { StateManager } from '../state/index'
 import { ERROR, VmError } from '../exceptions'
 import Memory from './memory'
 import Stack from './stack'
@@ -42,7 +41,11 @@ export interface InterpreterStep {
   address: Buffer
   memory: number[]
   memoryWordCount: BN
-  opcode: Opcode
+  opcode: {
+    name: string
+    fee: number
+    isAsync: boolean
+  }
   account: Account
   codeAddress: Buffer
 }
@@ -52,13 +55,13 @@ export interface InterpreterStep {
  */
 export default class Interpreter {
   _vm: any
-  _state: PStateManager
+  _state: StateManager
   _runState: RunState
   _eei: EEI
 
   constructor(vm: any, eei: EEI) {
     this._vm = vm // TODO: remove when not needed
-    this._state = vm.pStateManager
+    this._state = vm.stateManager
     this._eei = eei
     this._runState = {
       programCounter: 0,
@@ -71,7 +74,7 @@ export default class Interpreter {
       validJumps: [],
       // TODO: Replace with EEI methods
       _common: this._vm._common,
-      stateManager: this._state._wrapped,
+      stateManager: this._state,
       eei: this._eei,
     }
   }
@@ -147,39 +150,22 @@ export default class Interpreter {
   /**
    * Get info for an opcode from VM's list of opcodes.
    */
-  lookupOpInfo(op: number, full: boolean = false): Opcode {
-    const opcode = this._vm._opcodes[op]
-      ? this._vm._opcodes[op]
-      : { name: 'INVALID', fee: 0, isAsync: false }
-
-    if (full) {
-      let name = opcode.name
-      if (name === 'LOG') {
-        name += op - 0xa0
-      }
-
-      if (name === 'PUSH') {
-        name += op - 0x5f
-      }
-
-      if (name === 'DUP') {
-        name += op - 0x7f
-      }
-
-      if (name === 'SWAP') {
-        name += op - 0x8f
-      }
-      return { ...opcode, ...{ name } }
-    }
+  lookupOpInfo(op: number): Opcode {
+    const opcode = this._vm._opcodes[op] ? this._vm._opcodes[op] : this._vm._opcodes[0xfe]
 
     return opcode
   }
 
   async _runStepHook(): Promise<void> {
+    const opcode = this.lookupOpInfo(this._runState.opCode)
     const eventObj: InterpreterStep = {
       pc: this._runState.programCounter,
       gasLeft: this._eei.getGasLeft(),
-      opcode: this.lookupOpInfo(this._runState.opCode, true),
+      opcode: {
+        name: opcode.fullName,
+        fee: opcode.fee,
+        isAsync: opcode.isAsync,
+      },
       stack: this._runState.stack._store,
       depth: this._eei._env.depth,
       address: this._eei._env.address,
