@@ -28,10 +28,6 @@ jobs:
         env:
           CI: true
         working-directory: '${{ env.cwd }}'
-      - run: 'npm run test:API:browser'
-        env:
-          CI: true
-        working-directory: '${{ env.cwd }}'
   test-state:
     runs-on: ubuntu-latest
     steps:
